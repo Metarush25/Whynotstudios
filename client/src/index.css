@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(40 40% 97%); /* Off-white / Cream #fcfaf7 */
+  --color-foreground: hsl(150 15% 30%); /* Muted Dark Green #44544a */
+  
+  --color-card: hsl(40 30% 95%);
+  --color-card-foreground: hsl(150 15% 30%);
+
+  --color-primary: hsl(150 15% 30%); /* Akshay & storyteller Green #44544a */
+  --color-primary-foreground: hsl(40 40% 97%);
+
+  --color-secondary: hsl(25 80% 50%); /* Burnt Orange #d96d26 */
+  --color-secondary-foreground: hsl(40 40% 97%);
+
+  --color-accent: hsl(25 80% 50%);
+  --color-accent-foreground: hsl(40 40% 97%);
+
+  --color-border: hsl(150 10% 85%);
+  --color-ring: hsl(150 15% 30%);
+
+  --radius: 0rem;
+  
+  --font-heading: 'Abril+Fatface', serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-script: 'La Belle Aurore', cursive;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-body antialiased bg-background text-foreground selection:bg-primary/20;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: var(--font-script);
+  }
+}
