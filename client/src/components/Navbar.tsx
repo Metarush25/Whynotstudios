@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { Menu, X, Smile } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
+
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

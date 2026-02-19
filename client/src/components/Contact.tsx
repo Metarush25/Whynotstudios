@@ -52,7 +52,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-2xl font-heading font-bold text-primary mb-1 italic tracking-tighter">Visit the Lab</h4>
-                  <p className="text-primary/60 font-medium">99 Chaos Alley, Unit 7<br />Brooklyn, NY 11201</p>
+                  <p className="text-primary/60 font-medium">Bangalore | Mumbai <br />Pan India</p>
                 </div>
               </div>
 
@@ -62,7 +62,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-2xl font-heading font-bold text-primary mb-1 italic tracking-tighter">Digitally Speaking</h4>
-                  <p className="text-primary/60 font-medium underline decoration-secondary decoration-2 underline-offset-4">hello@whynot.studio</p>
+                  <p className="text-primary/60 font-medium underline decoration-secondary decoration-2 underline-offset-4">akshay@whynotstudios.in </p>
                 </div>
               </div>
             </div>
@@ -87,9 +87,9 @@ export default function Contact() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Your Moniker</FormLabel>
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Your Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="E.g. Stanley Kubrick" {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
+                        <Input placeholder=" " {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -100,9 +100,9 @@ export default function Contact() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Digital Address</FormLabel>
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Email Address</FormLabel>
                       <FormControl>
-                        <Input placeholder="E.g. stan@odyssey.com" {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
+                        <Input placeholder="E.g. aj@odyssey.com" {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -113,7 +113,7 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">The Manifest</FormLabel>
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Tell us more</FormLabel>
                       <FormControl>
                         <Textarea placeholder="What's the dream?" {...field} className="bg-primary/5 border-none min-h-[160px] rounded-none focus-visible:ring-secondary text-primary font-bold resize-none" />
                       </FormControl>

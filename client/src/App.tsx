@@ -1,29 +1,24 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
-import NotFound from "@/pages/not-found";
 
-function Router() {
+import Corporate from "@/pages/portfolio/Corporate";
+import LiveEvents from "@/pages/portfolio/LiveEvents";
+import Weddings from "@/pages/portfolio/Weddings";
+import AdventureTravel from "@/pages/portfolio/AdventureTravel";
+import CSR from "@/pages/portfolio/CSR";
+
+export default function App() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/portfolio/corporate" element={<Corporate />} />
+        <Route path="/portfolio/live-events" element={<LiveEvents />} />
+        <Route path="/portfolio/weddings" element={<Weddings />} />
+        <Route path="/portfolio/adventure-travel" element={<AdventureTravel />} />
+        <Route path="/portfolio/csr" element={<CSR />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
-
-export default App;

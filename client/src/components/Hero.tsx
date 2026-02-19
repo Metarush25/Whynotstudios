@@ -29,7 +29,7 @@ export default function Hero() {
             why not <span className="text-primary/80 italic">studios</span>
           </h1>
           <p className="max-w-2xl mx-auto text-primary/80 text-xl font-medium leading-relaxed mb-12">
-            We don't just shoot video. We craft visual legacies for brands that aren't afraid to ask "Why Not?"
+            Everyone has a story, why not tell it better?
           </p>
         </motion.div>
       </div>

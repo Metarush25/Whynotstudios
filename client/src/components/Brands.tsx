@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 const brands = [
-  { name: "Vogue", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Vogue_logo.svg/2560px-Vogue_logo.svg.png" },
-  { name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" },
-  { name: "Apple", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png" },
-  { name: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png" },
+  { name: "GoPro", logo: "https://commons.wikimedia.org/wiki/File:GoPro_logo_light.svg" },
   { name: "Red Bull", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Red_Bull_Racing_logo.svg/1200px-Red_Bull_Racing_logo.svg.png" },
+  { name: "Freshpik", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png" },
+  { name: "Social", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png" },
+  { name: "xto10x", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Red_Bull_Racing_logo.svg/1200px-Red_Bull_Racing_logo.svg.png" },
 ];
 
 export default function Brands() {

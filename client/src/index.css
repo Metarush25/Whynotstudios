@@ -1,48 +1,65 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Malinton";
+  src: url("./assets/fonts/malinton-trial-version.bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MoglanDemo";
+  src: url("./assets/fonts/Moglan_Demo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
-  --color-background: hsl(40 40% 97%); /* Off-white / Cream #fcfaf7 */
-  --color-foreground: hsl(150 15% 30%); /* Muted Dark Green #44544a */
-  
-  --color-card: hsl(40 30% 95%);
-  --color-card-foreground: hsl(150 15% 30%);
+  /* COLORS */
+  --color-background: #313E35;
+  --color-foreground: #FEFCF4;
 
-  --color-primary: hsl(150 15% 30%); /* Akshay & storyteller Green #44544a */
-  --color-primary-foreground: hsl(40 40% 97%);
+  --color-card: #2A352E;
+  --color-card-foreground: #FEFCF4;
 
-  --color-secondary: hsl(25 80% 50%); /* Burnt Orange #d96d26 */
-  --color-secondary-foreground: hsl(40 40% 97%);
+  --color-primary: #FEFCF4;
+  --color-primary-foreground: #313E35;
 
-  --color-accent: hsl(25 80% 50%);
-  --color-accent-foreground: hsl(40 40% 97%);
+  --color-secondary: #FE9B31;
+  --color-secondary-foreground: #313E35;
 
-  --color-border: hsl(150 10% 85%);
-  --color-ring: hsl(150 15% 30%);
+  --color-accent: #FE9B31;
+  --color-accent-foreground: #313E35;
+
+  --color-border: rgba(254, 252, 244, 0.15);
+  --color-ring: #FE9B31;
 
   --radius: 0rem;
-  
-  --font-heading: 'Abril+Fatface', serif;
+
+  /* FONTS */
+  --font-heading: 'Malinton', serif;
   --font-body: 'Montserrat', sans-serif;
-  --font-script: 'La Belle Aurore', cursive;
+  --font-display: 'MoglanDemo', serif;
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply font-body antialiased bg-background text-foreground selection:bg-primary/20;
+    @apply font-body antialiased bg-background text-foreground selection:bg-secondary/30;
   }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
   }
 }
 
 @layer utilities {
-  .font-script {
-    font-family: var(--font-script);
+  .font-display {
+    font-family: var(--font-display);
   }
 }

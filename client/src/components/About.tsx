@@ -16,10 +16,10 @@ export default function About() {
               a studio for the <span className="text-primary/80 italic">unconventional</span>.
             </h3>
             <p className="text-primary/70 text-lg font-medium leading-relaxed mb-6">
-              Why Not Studios isn't your average production house. We're a collective of rebels who believe that "good enough" is the enemy of "legendary."
+               We're Why Not Studios- a collective of filmmakers, storytellers, and visual artists. Think of us as your in-house content team, without the overhead.
             </p>
             <p className="text-primary/70 text-lg font-medium leading-relaxed mb-10">
-              We ditched the corporate rulebook to focus on raw, authentic storytelling. Whether it's a global ad or an intimate doc, we bring a "Why Not?" attitude to every frame.
+              
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
