@@ -1,10 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import weddingImg from "@assets/generated_images/wedding_videography_cinematic_shot.png";
 import corporateImg from "@assets/generated_images/corporate_event_videography_professional.png";
 import musicImg from "@assets/generated_images/music_video_production_neon.png";
 import docImg from "@assets/generated_images/documentary_filmmaking_nature.png";
 import commercialImg from "@assets/generated_images/commercial_product_studio_shot.png";
+
+// Straight horizontal spread from center — with clear gap between cards
+const SPREAD_X = [-520, 520, -260, 260, 0];
 
 const categories = [
   {
@@ -13,6 +17,7 @@ const categories = [
     category: "[ WEDDING FILMS ]",
     image: weddingImg,
     duration: "2W",
+    path: "/portfolio/weddings",
   },
   {
     id: 2,
@@ -20,6 +25,7 @@ const categories = [
     category: "[ LIVE EVENTS ]",
     image: musicImg,
     duration: "3M",
+    path: "/portfolio/live-events",
   },
   {
     id: 3,
@@ -27,6 +33,7 @@ const categories = [
     category: "[ CORPORATE & BRANDS]",
     image: corporateImg,
     duration: "2Y",
+    path: "/portfolio/corporate",
   },
   {
     id: 4,
@@ -34,6 +41,7 @@ const categories = [
     category: "[ ADVENTURE ]",
     image: docImg,
     duration: "2M",
+    path: "/portfolio/adventure-travel",
   },
   {
     id: 5,
@@ -41,6 +49,7 @@ const categories = [
     category: "[ CSR ]",
     image: commercialImg,
     duration: "1M",
+    path: "/portfolio/csr",
   },
 ];
 
@@ -53,68 +62,67 @@ export default function Portfolio() {
   });
 
   return (
-    <section 
-      id="portfolio" 
-      ref={containerRef} 
-      className="relative h-screen bg-background border-b border-primary/5 flex items-center justify-center overflow-hidden"
+    <section
+      id="portfolio"
+      ref={containerRef}
+      className="relative min-h-screen h-screen bg-background flex items-center justify-center overflow-hidden"
     >
       <div className="w-full flex flex-col items-center justify-center">
         {/* Title stays fixed */}
-        <div className="absolute top-12 left-6 md:left-20 z-30">
-          <h3 className="text-5xl md:text-7xl font-heading text-primary leading-[0.9] lowercase">
-            latest <span className="text-primary/70 italic">dispatches</span>
-          </h3>
-        </div>
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 z-30 w-full max-w-6xl px-6 text-center">
+  <h3 className="text-5xl md:text-7xl font-heading text-primary leading-[0.9] lowercase">
+    latest <span className="text-primary/70 italic">dispatches</span>
+  </h3>
+</div>
 
-        {/* Animation Layer */}
-        <div className="relative w-full max-w-7xl flex items-center justify-center px-4 md:px-10">
-          <div className="relative w-full h-[600px] flex items-center justify-center">
+        {/* Cards: straight from center — stack then horizontal spread, no tilt */}
+        <div className="relative w-full max-w-6xl flex items-center justify-center px-4 md:px-4 overflow-visible -translate-y-[35%]">
+          <div className="relative w-full h-[520px] md:h-[300px]">
             {categories.map((item, index) => {
-              // Exact spread: 1:1 mapping from 0 to 1
-              const spacing = 280; 
-              const finalX = (index - 2) * spacing;
-              
-              const x = useTransform(scrollYProgress, [0.4, 0.6], [0, finalX]);
-              const rotate = useTransform(scrollYProgress, [0.4, 0.6], [0, (index - 2) * 5]);
-              const y = useTransform(scrollYProgress, [0.4, 0.6], [0, (index % 2 === 0 ? -15 : 15)]);
-              const opacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
+              const spreadX = SPREAD_X[index];
+              const isCenter = index === 4;
+              const rangeStart = isCenter ? 0.18 : 0.24;
+              const rangeEnd = isCenter ? 0.48 : 0.56;
+
+              const x = useTransform(scrollYProgress, [0, rangeStart, rangeEnd], [0, 0, spreadX]);
+              const opacity = useTransform(scrollYProgress, [0, 0.08, 0.16], [0, 1, 1]);
+              const scale = useTransform(scrollYProgress, [0, rangeStart, rangeEnd], [0.94, 0.94, 1]);
 
               return (
-                <motion.div
+                <div
                   key={item.id}
-                  style={{
-                    x,
-                    y,
-                    rotate,
-                    opacity,
-                    zIndex: index + 1,
-                    position: "absolute",
-                    clipPath: "polygon(0% 5%, 5% 5%, 5% 0%, 10% 0%, 10% 5%, 15% 5%, 15% 0%, 20% 0%, 20% 5%, 25% 5%, 25% 0%, 30% 0%, 30% 5%, 35% 5%, 35% 0%, 40% 0%, 40% 5%, 45% 5%, 45% 0%, 50% 0%, 50% 5%, 55% 5%, 55% 0%, 60% 0%, 60% 5%, 65% 5%, 65% 0%, 70% 0%, 70% 5%, 75% 5%, 75% 0%, 80% 0%, 80% 5%, 85% 5%, 85% 0%, 90% 0%, 90% 5%, 95% 5%, 95% 0%, 100% 0%, 100% 5%, 100% 10%, 95% 10%, 95% 15%, 100% 15%, 100% 20%, 95% 20%, 95% 25%, 100% 25%, 100% 30%, 95% 30%, 95% 35%, 100% 35%, 100% 40%, 95% 40%, 95% 45%, 100% 45%, 100% 50%, 95% 50%, 95% 55%, 100% 55%, 100% 60%, 95% 60%, 95% 65%, 100% 65%, 100% 70%, 95% 70%, 95% 75%, 100% 75%, 100% 80%, 95% 80%, 95% 85%, 100% 85%, 100% 90%, 95% 90%, 95% 95%, 100% 95%, 100% 100%, 95% 100%, 95% 95%, 90% 95%, 90% 100%, 85% 100%, 85% 95%, 80% 95%, 80% 100%, 75% 100%, 75% 95%, 70% 95%, 70% 100%, 65% 100%, 65% 95%, 60% 95%, 60% 100%, 55% 100%, 55% 95%, 50% 95%, 50% 100%, 45% 100%, 45% 95%, 40% 95%, 40% 100%, 35% 100%, 35% 95%, 30% 95%, 30% 100%, 25% 100%, 25% 95%, 20% 95%, 20% 100%, 15% 100%, 15% 95%, 10% 95%, 10% 100%, 5% 100%, 5% 95%, 0% 95%, 0% 90%, 5% 90%, 5% 85%, 0% 85%, 0% 80%, 5% 80%, 5% 75%, 0% 75%, 0% 70%, 5% 70%, 5% 65%, 0% 65%, 0% 60%, 5% 60%, 5% 55%, 0% 55%, 0% 50%, 5% 50%, 5% 45%, 0% 45%, 0% 40%, 5% 40%, 5% 35%, 0% 35%, 0% 30%, 5% 30%, 5% 25%, 0% 25%, 0% 20%, 5% 20%, 5% 15%, 0% 15%, 0% 10%, 5% 10%, 5% 5%, 0% 5%)",
-                  }}
-                  className="w-[180px] md:w-[240px] lg:w-[280px] bg-white p-4 md:p-5 shadow-2xl shadow-primary/20 group cursor-pointer border-4 border-primary/20 hover:border-primary/40 transition-colors"
+                  className="absolute left-1/2 top-1/2 w-0 h-0 -translate-x-1/2 -translate-y-1/2"
+                  style={{ zIndex: isCenter ? 10 : index + 1 }}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden mb-3 bg-primary/10">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover grayscale brightness-110 contrast-125 group-hover:scale-105 transition-all duration-500"
-                    />
-                  </div>
-                  
-                  <div className="flex flex-col border-t border-primary/10 pt-3">
-                    <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-black text-primary leading-tight mb-1 lowercase">
-                      {item.title}
-                    </h4>
-                    <div className="flex justify-between items-end">
-                      <span className="text-[8px] md:text-[10px] uppercase font-black tracking-tighter text-secondary leading-none">
-                        {item.category}
-                      </span>
-                      <span className="text-xl md:text-2xl lg:text-3xl font-heading font-black text-primary leading-none">
-                        {item.duration}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
+                  <motion.div
+                    style={{ x, opacity, scale }}
+                    className="will-change-transform inline-block"
+                  >
+                    <Link
+                      to={item.path}
+                      className="block rounded-xl overflow-hidden bg-white shadow-2xl shadow-primary/20 border border-primary/10 hover:border-primary/30 transition-colors duration-300 group"
+                    >
+                      <div className="relative w-[200px] md:w-[240px] lg:w-[264px] aspect-[4/5] overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          <h4 className="text-sm md:text-base font-heading font-bold text-white leading-tight lowercase">
+                            {item.title}
+                          </h4>
+                          <span className="text-[10px] uppercase tracking-wider text-white/80">
+                            {item.category}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                </div>
               );
             })}
           </div>

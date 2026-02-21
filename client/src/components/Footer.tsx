@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="py-8 bg-black border-t border-border/30">
+    <footer className="py-8 bg-black">
       <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-muted-foreground text-sm">
           &copy; {new Date().getFullYear()} Lumina Studio. All rights reserved.

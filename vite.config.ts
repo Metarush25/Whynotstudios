@@ -6,6 +6,15 @@ import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), metaImagesPlugin()],
+  server: {
+    proxy: {
+      "/api/formspree": {
+        target: "https://formspree.io",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/formspree/, "/f/xpqjyqll"),
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
