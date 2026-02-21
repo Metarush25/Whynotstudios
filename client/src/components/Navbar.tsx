@@ -18,10 +18,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Portfolio", to: "portfolio" },
+    { name: "Story", to: "story" },
     { name: "Brands", to: "brands" },
-    { name: "About", to: "about" },
-    { name: "Contact", to: "contact" },
+    { name: "Portfolio", to: "portfolio" },
+    { name: "Our Work", to: "our-work" },
+    { name: "Short Form", to: "short-form" },
+    { name: "Our Offering", to: "our-offering" },
   ];
 
   return (

@@ -1,37 +1,61 @@
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
-import { ArrowRight } from "lucide-react";
-import heroVideo from "@assets/generated_videos/cinematic_camera_lens_racking_focus_in_dark_studio.mp4";
+import heroVideo from "@/assets/Hero-video.mp4";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen h-screen w-full overflow-hidden bg-[#40513B]"
+    >
+      {/* Full-screen video layer */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-30 grayscale brightness-150 contrast-75"
+          className="min-h-full min-w-full h-full w-full object-cover"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-white/40 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
+        {/* Dark green overlay for readability */}
+        <div
+          className="absolute inset-0 bg-[#40513B]/40"
+          aria-hidden
+        />
       </div>
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
+
+      {/* Content: headline centered in viewport, tagline fixed at bottom */}
+      <div className="relative z-10 h-full flex flex-col items-center px-4">
+        {/* Headline: truly centered (flex-1 + flex center) */}
+        <div className="flex-1 flex items-center justify-center w-full">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <h1
+              className="font-heading font-bold text-white leading-tight"
+              style={{ fontFamily: "'Malinton', serif" }}
+            >
+              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+                Why Not
+              </span>
+              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1">
+                Studios
+              </span>
+            </h1>
+          </motion.div>
+        </div>
+
+        {/* Bottom tagline */}
+        <p
+          className="shrink-0 w-full max-w-md mx-auto pb-8 md:pb-10 text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#FEFCF4] text-center"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading text-primary mb-8 flex flex-col leading-[0.9] lowercase">
-            why not <span className="text-primary/80 italic">studios</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-primary/80 text-xl font-medium leading-relaxed mb-12">
-            Everyone has a story, why not tell it better?
-          </p>
-        </motion.div>
+          Stories built to last, not scroll past.
+        </p>
       </div>
     </section>
   );

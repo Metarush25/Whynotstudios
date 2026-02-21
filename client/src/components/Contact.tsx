@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { useState, useRef } from "react";
+import { useForm, type ControllerRenderProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -7,7 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, MapPin, Phone, Instagram, Twitter, Youtube, Smile } from "lucide-react";
+import { Mail, Instagram, Twitter, Youtube, Smile, Loader2 } from "lucide-react";
+
+const FORM_ID = "xpqjyqll";
+const FORMSPREE_ENDPOINT =
+  import.meta.env.DEV ? "/api/formspree" : `https://formspree.io/f/${FORM_ID}`;
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -17,6 +21,8 @@ const formSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submittingRef = useRef(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,20 +32,71 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: "Wait... is that it?",
-      description: "Just kidding. Message sent! We'll talk soon.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setIsSubmitting(true);
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      const contentType = res.headers.get("content-type");
+      const isJson = contentType?.includes("application/json");
+      const data = isJson ? await res.json().catch(() => ({})) : {};
+
+      if (!res.ok) {
+        const errors = (data as { errors?: Array<{ message?: string }> })?.errors;
+        const msg = errors?.[0]?.message || (data as { error?: string })?.error || "Failed to send";
+        throw new Error(msg);
+      }
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you soon.",
+      });
+      form.reset(
+        { name: "", email: "", message: "" },
+        { keepErrors: false, keepDirty: false, keepIsSubmitted: false, keepTouched: false }
+      );
+    } catch (err) {
+      if ((err as Error).name === "AbortError") {
+        toast({
+          title: "Request timed out",
+          description: "Please check your connection and try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: err instanceof Error ? err.message : "Could not send. Try emailing akshay@whynotstudios.in",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <section id="contact" className="py-24 bg-background border-t-8 border-primary">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div>
-            <div className="mb-12">
+    <section id="contact" className="py-24 bg-background">
+      <div className="container mx-auto px-6 md:px-10 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+          <div className="lg:pt-1">
+            <div className="mb-12 text-center">
               <h3 className="text-6xl font-heading text-primary leading-[0.9] lowercase">
                 shoot us a <span className="text-primary/80 italic">signal.</span>
               </h3>
@@ -79,51 +136,89 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="bg-white p-10 shadow-2xl shadow-primary/10 border-r-8 border-b-8 border-secondary">
+          <div className="bg-white p-8 md:p-10 shadow-2xl shadow-primary/10 border-r-8 border-b-8 border-secondary w-full">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  form.handleSubmit(onSubmit)(e);
+                }}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Your Name</FormLabel>
+                  render={({ field }: { field: ControllerRenderProps<z.infer<typeof formSchema>, "name"> }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-background/70">
+                        Your Name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder=" " {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
+                        <Input
+                          placeholder="Your name"
+                          {...field}
+                          className="h-12 md:h-14 w-full rounded-none border border-background/20 bg-background/5 px-4 text-background font-medium placeholder:text-background/40 focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-0 focus-visible:border-secondary"
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-xs mt-1" />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
                   name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Email Address</FormLabel>
+                  render={({ field }: { field: ControllerRenderProps<z.infer<typeof formSchema>, "email"> }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-background/70">
+                        Email Address
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="E.g. aj@odyssey.com" {...field} className="bg-primary/5 border-none h-14 rounded-none focus-visible:ring-secondary text-primary font-bold" />
+                        <Input
+                          type="email"
+                          placeholder="e.g. hello@example.com"
+                          {...field}
+                          className="h-12 md:h-14 w-full rounded-none border border-background/20 bg-background/5 px-4 text-background font-medium placeholder:text-background/40 focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-0 focus-visible:border-secondary"
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-xs mt-1" />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
                   name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase tracking-widest text-xs font-black text-primary/40">Tell us more</FormLabel>
+                  render={({ field }: { field: ControllerRenderProps<z.infer<typeof formSchema>, "message"> }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel className="uppercase tracking-widest text-xs font-black text-background/70">
+                        Tell us more
+                      </FormLabel>
                       <FormControl>
-                        <Textarea placeholder="What's the dream?" {...field} className="bg-primary/5 border-none min-h-[160px] rounded-none focus-visible:ring-secondary text-primary font-bold resize-none" />
+                        <Textarea
+                          placeholder="What's the dream?"
+                          {...field}
+                          className="min-h-[140px] w-full rounded-none border border-background/20 bg-background/5 px-4 py-3 text-background font-medium placeholder:text-background/40 focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-0 focus-visible:border-secondary resize-none"
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-xs mt-1" />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full h-16 rounded-none bg-primary text-background font-black tracking-widest uppercase hover:bg-secondary transition-all text-lg">
-                  Get In Touch
-                </Button>
+                <div className="pt-2">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-14 md:h-16 rounded-none bg-primary text-background font-black tracking-widest uppercase hover:bg-secondary transition-colors text-base md:text-lg disabled:opacity-70 disabled:pointer-events-none"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Get In Touch"
+                    )}
+                  </Button>
+                </div>
               </form>
             </Form>
           </div>
