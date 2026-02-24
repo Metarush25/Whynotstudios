@@ -1,55 +1,59 @@
 import { useState } from "react";
+import img1 from "@/assets/images/Untitled-1.jpeg";
+import img3 from "@/assets/images/image3.jpg";
+import img2 from "@/assets/images/Image2.jpeg";
+import img4 from "@/assets/images/image4.jpeg";
+import vid1 from "@/assets/vid1.MP4";
 
 const WORK_ITEMS = [
   {
     type: "video" as const,
-    src: "https://framerusercontent.com/assets/Fc7PSpH0ZaYoSGNU5zKXVZ3eips.webm",
+    src: vid1,
     href: "/#portfolio",
   },
   {
     type: "image" as const,
-    src: "https://framerusercontent.com/images/ujEq7HJJsmQseW1niZxDvyF5VRk.png?scale-down-to=512",
+    src: img1,
     href: "/#portfolio",
   },
   {
     type: "video" as const,
-    src: "https://framerusercontent.com/assets/Z2QLGtFTpYbIcJpKDnzJ4AWL1yg.webm",
+    src: vid1,
     href: "/#portfolio",
   },
   {
     type: "image" as const,
-    src: "https://framerusercontent.com/images/EHg0xpTq95F66aCmueGsSUM2e0.jpg",
-    href: "https://linktr.ee/gauravachaiah",
-  },
-  {
-    type: "video" as const,
-    src: "https://framerusercontent.com/assets/hrqRrx8Poz8ldZhFQTBYYEc4Qw.mp4",
-    poster: "https://framerusercontent.com/images/KmY3HvNNStmOERgxtV1Cd5FPCE.png",
-    href: "/#portfolio",
-  },
-  {
-    type: "image" as const,
-    src: "https://framerusercontent.com/images/ZiPtXTT74pScybYj98xmWBvJDLk.jpg",
-    href: "https://linktr.ee/gauravachaiah",
-  },
-  {
-    type: "video" as const,
-    src: "https://framerusercontent.com/assets/jgjN09cM5r17aDth1UoIprhupG8.webm",
-    href: "/#portfolio",
-  },
-  {
-    type: "image" as const,
-    src: "https://framerusercontent.com/images/SQPZRuC8fVe3fEpEpte2VaRJnVo.png",
+    src: img2,
     href: "/#portfolio",
   },
   {
     type: "video" as const,
-    src: "https://framerusercontent.com/assets/JXKG3OcJlbXz7KcNAWFi7IPl94.webm",
+    src: vid1,
     href: "/#portfolio",
   },
   {
     type: "image" as const,
-    src: "https://framerusercontent.com/images/Gac3ZJeCKYr7KB2espH3mrltz3s.png",
+    src: img3,
+    href: "/#portfolio",
+  },
+  {
+    type: "video" as const,
+    src: vid1,
+    href: "/#portfolio",
+  },
+  {
+    type: "image" as const,
+    src: img4,
+    href: "/#portfolio",
+  },
+  {
+    type: "video" as const,
+    src: vid1,
+    href: "/#portfolio",
+  },
+  {
+    type: "image" as const,
+    src: img4,
     href: "/#portfolio",
   },
 ];
