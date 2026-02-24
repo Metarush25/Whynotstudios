@@ -7,12 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Instagram, Linkedin, Phone,  Smile, Loader2 } from "lucide-react";
+import { Mail, Instagram, Linkedin, Phone,  Smile, Loader2, MessageCircleMoreIcon } from "lucide-react";
 
 const SOCIAL_LINKS = [
   { href: "https://www.instagram.com/why_not_studios_/", icon: Instagram, label: "Instagram" },
   { href: "https://www.linkedin.com/company/why-not-studios-byakshay/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://wa.me/918169978881?text=Hi", icon: Phone, label: "WhatsApp" },
+  { href: "https://wa.me/918169978881?text=Hi, I just visited Why Not Studios and want to discuss a project with you.", icon: MessageCircleMoreIcon, label: "WhatsApp" },
 ];
 
 const FORM_ID = "xpqjyqll";
@@ -104,7 +104,7 @@ export default function Contact() {
           <div className="lg:pt-1">
             <div className="mb-12 text-center">
               <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-[0.9] lowercase">
-                shoot us a <span className="text-primary/80 italic">signal.</span>
+                Work with <span className="text-primary/80 italic">us</span>
               </h3>
             </div>
 

@@ -18,11 +18,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Story", to: "story" },
     { name: "Brands", to: "brands" },
     { name: "Portfolio", to: "portfolio" },
     { name: "Our Work", to: "our-work" },
-    { name: "Short Form", to: "short-form" },
     { name: "Our Offering", to: "our-offering" },
   ];
 

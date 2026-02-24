@@ -1,8 +1,8 @@
 const SHORT_FORM_VIDEOS = [
-  "https://play.gumlet.io/embed/698b85defc23d3d76fd0f5fb?background=false&autoplay=true&loop=true&disable_player_controls=false",
-  "https://play.gumlet.io/embed/698b896aaec3d4e420ebc25f?background=false&autoplay=true&loop=true&disable_player_controls=false",
-  "https://play.gumlet.io/embed/68f857da24f455e32d0d96bb?background=false&autoplay=true&loop=true&disableControls=false",
-  "https://play.gumlet.io/embed/68f857da368a81dfff8cedf2?background=false&autoplay=true&loop=true&disableControls=false",
+  "https://play.gumlet.io/embed/699d61ec26981d8913bed4e4?background=false&autoplay=true&loop=true&disable_player_controls=false",
+  "https://play.gumlet.io/embed/699d602626981d8913bea4d5?background=false&autoplay=true&loop=true&disable_player_controls=false",
+  "https://play.gumlet.io/embed/699d5f6a26981d8913be91e7?background=false&autoplay=true&loop=true&disableControls=false",
+  "https://play.gumlet.io/embed/699d5dbd71f7bf393a7e2513?background=false&autoplay=true&loop=true&disableControls=false",
 ];
 
 export default function ShortForm() {

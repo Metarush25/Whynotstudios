@@ -13,8 +13,6 @@ import industreeLogo from "@/assets/Brand logos Why Not Studios/Logo-Industree-S
 import googleStartupsLogo from "@/assets/Brand logos Why Not Studios/Logo_for_Google_for_Startups_page.png";
 import growthSchoolLogo from "@/assets/Brand logos Why Not Studios/GrowthSchool-Logo.png";
 import rebalanceLogo from "@/assets/Brand logos Why Not Studios/rebalance_logo.jpg";
-import zazuLogo from "@/assets/Brand logos Why Not Studios/zazu_production_cover.jpeg";
-import gsLogo from "@/assets/Brand logos Why Not Studios/GS_Logo.png";
 
 const brands = [
   { name: "GoPro", logo: goProLogo },
@@ -28,8 +26,6 @@ const brands = [
   { name: "Google for Startups", logo: googleStartupsLogo },
   { name: "GrowthSchool", logo: growthSchoolLogo },
   { name: "Rebalance", logo: rebalanceLogo },
-  { name: "Zazu", logo: zazuLogo },
-  { name: "GS", logo: gsLogo },
 ];
 
 const LOGO_BOX_SIZE = "h-14 w-28 md:h-16 md:w-32"; // fixed size per logo for consistency
@@ -71,17 +67,21 @@ export default function Brands() {
         </p>
       </div>
 
-      <div className="flex overflow-hidden group bg-white py-8">
-        <motion.div
-          animate={{ x: [0, -1000] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="flex gap-20 items-center min-w-full"
-        >
-          {[...brands, ...brands].map((brand, i) => (
-            <BrandLogo key={i} brand={brand} />
-          ))}
-        </motion.div>
-      </div>
+      <div className="flex overflow-hidden bg-white py-8">
+  <motion.div
+    className="flex gap-10 items-center whitespace-nowrap"
+    animate={{ x: ["0%", "-50%"] }}
+    transition={{
+      duration: 15, // control speed here
+      repeat: Infinity,
+      ease: "linear",
+    }}
+  >
+    {[...brands, ...brands].map((brand, i) => (
+      <BrandLogo key={i} brand={brand} />
+    ))}
+  </motion.div>
+</div>
     </section>
   );
 }
