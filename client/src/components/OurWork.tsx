@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import img1 from "@/assets/images/image1.jpeg";
 import img3 from "@/assets/images/image3.jpg";
 import img2 from "@/assets/images/image2.jpeg";
 import img4 from "@/assets/images/image4.jpeg";
@@ -14,7 +13,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img1,
+    src: img2,
     href: "/#portfolio",
   },
   {
