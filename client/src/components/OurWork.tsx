@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-import img3 from "@/assets/images/image3.jpg";
 import img2 from "@/assets/images/image2.jpeg";
 import img4 from "@/assets/images/image4.jpeg";
+import img3 from "@/assets/images/image3.jpg";
 import vid1 from "@/assets/vid1.mp4";
 
 const WORK_ITEMS = [
