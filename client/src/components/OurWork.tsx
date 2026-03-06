@@ -1,11 +1,11 @@
 import { useState } from "react";
 import screen from "@/assets/screen.png";
-import vid1 from "@/assets/vid1.mp4";
+import sfs from "@/assets/sfs.mp4";
 
 const WORK_ITEMS = [
   {
     type: "video" as const,
-    src: vid1,
+    src: sfs,
     href: "/#portfolio",
   },
   {
@@ -15,7 +15,7 @@ const WORK_ITEMS = [
   },
   {
     type: "video" as const,
-    src: vid1,
+    src: sfs,
     href: "/#portfolio",
   },
   {
@@ -25,7 +25,7 @@ const WORK_ITEMS = [
   },
   {
     type: "video" as const,
-    src: vid1,
+    src: sfs,
     href: "/#portfolio",
   },
   {
@@ -35,7 +35,7 @@ const WORK_ITEMS = [
   },
   {
     type: "video" as const,
-    src: vid1,
+    src: sfs,
     href: "/#portfolio",
   },
   {
@@ -45,7 +45,7 @@ const WORK_ITEMS = [
   },
   {
     type: "video" as const,
-    src: vid1,
+    src: sfs,
     href: "/#portfolio",
   },
   {
