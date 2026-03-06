@@ -71,7 +71,7 @@ export default function Portfolio() {
         {/* Title */}
         <div className="w-full max-w-6xl px-6 text-center mb-8 md:mb-0 md:absolute md:top-12 md:left-1/2 md:-translate-x-1/2 z-30">
           <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-[0.9] lowercase">
-            latest <span className="text-primary/70 italic">dispatches</span>
+            our <span className="text-primary/70 italic">categories</span>
           </h3>
         </div>
 
