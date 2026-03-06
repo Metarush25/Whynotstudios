@@ -1,7 +1,5 @@
 import { useState } from "react";
-import img2 from "@/assets/images/image2.jpeg";
-import img4 from "@/assets/images/image4.jpeg";
-import img3 from "@/assets/images/image3.jpg";
+import screen from "@/assets/screen.png";
 import vid1 from "@/assets/vid1.mp4";
 
 const WORK_ITEMS = [
@@ -12,7 +10,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img2,
+    src: screen,
     href: "/#portfolio",
   },
   {
@@ -22,7 +20,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img2,
+    src: screen,
     href: "/#portfolio",
   },
   {
@@ -32,7 +30,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img3,
+    src: screen,
     href: "/#portfolio",
   },
   {
@@ -42,7 +40,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img4,
+    src: screen,
     href: "/#portfolio",
   },
   {
@@ -52,7 +50,7 @@ const WORK_ITEMS = [
   },
   {
     type: "image" as const,
-    src: img4,
+    src: screen,
     href: "/#portfolio",
   },
 ];
